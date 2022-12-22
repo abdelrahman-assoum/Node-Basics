@@ -34,6 +34,8 @@ function startApp(name){
  * @returns {void}
  */
 function onDataReceived(text) {
+  text = text.replace('\n', '').trim();
+  const typed = text.split(' ');
   if (text === 'quit\n'|| text === 'exit\n') {
     quit();
   }
@@ -42,6 +44,10 @@ function onDataReceived(text) {
   }
   else if (text === 'help\n') {
     help();
+  }
+  else if (typed[0] === "hello"){
+  const sentence = typed.slice(1).join(' ');
+  console.log(`hello ${sentence}!`);
   }
   else{
     unknownCommand(text);
