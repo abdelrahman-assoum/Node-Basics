@@ -65,7 +65,7 @@ function unknownCommand(c){
  * @returns {void}
  */
 function help(){
-  const helplist ="quit or exit for quit the application \nhello for saying hello!  \nhelp for listing all commands";
+  const helplist ="quit or exit for quit the application \nhello for saying hello!\nhello word for saying hello word!(you can use any word you want with hello)  \nhelp for listing all commands";
   console.log(helplist)
 }
 
@@ -82,8 +82,8 @@ function hello(text){
   text = text.replace('\n', '').trim();
   const typed = text.split(' ');
   if (typed[0] === "hello"){
-    const sentence = typed.slice(1);
-    console.log(`hello ${sentence}!`);
+    const word = typed.slice(1);
+    console.log(`hello ${word}!`);
     }
 }
 
