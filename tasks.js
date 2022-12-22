@@ -59,6 +59,11 @@ function onDataReceived(text) {
 function unknownCommand(c){
   console.log('unknown command: "'+c.trim()+'"')
 }
+/**
+ * List all the possible commands
+ *
+ * @returns {void}
+ */
 function help(){
   const helplist ="quit or exit for quit the application \nhello for saying hello!  \nhelp for listing all commands";
   console.log(helplist)
