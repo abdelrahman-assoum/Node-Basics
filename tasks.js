@@ -55,6 +55,9 @@ function onDataReceived(text) {
   else if (text.startsWith('remove')) {
     removeTask(text)
   }
+  else if (text.split(" ")[0] === "done" || text === "done\n") {
+  doneList(text);
+  }
   else {
     unknownCommand(text);
   }
@@ -98,11 +101,11 @@ function hello(text) {
     console.log(`hello ${word}!`);
   }
 }
-let tasksList = ["task 1", "task 2"]
+let tasksList = []
 
 function list() {
   tasksList.forEach((element, index) => {
-    console.log(`${index + 1} - [ ] ${element}`)
+    console.log(`${index + 1} ${element}`)
   })
 }
 function add(arg) {
@@ -112,7 +115,7 @@ function add(arg) {
     console.log("please enter a valid task")
   }
   else {
-    tasksList.push(b);
+    tasksList.push(`[ ] ${b}`);
     console.log("Your task has added succesfully");
   }
 }
@@ -146,13 +149,30 @@ if (edited[0] === 'edit') {
   if (a[0] > tasksList.length) {
     console.log("You enter a number does not exist")
   } else if (typeof Number(a[0]) === "number" && a[1] === " ") {
-    tasksList.splice(`${a[0] - 1}`, 1, a.slice(2));
+    tasksList.splice(`${a[0] - 1}`, 1, `[ ] ${a.slice(2)}`);
   } else if (typeof a[0] === "string") {
     tasksList.splice(-1, 1, a)
   }
 }
-
 }
+function doneList(text) {
+  if (text === "done\n") {
+    console.log("Select the task number you want to check it!")
+    return
+  }
+  text = text.replace('\n', '').trim()
+  const words = text.split(" ")
+  if (words[0] === "done") {
+    const a = words.slice(1).join(' ')
+    if (a[0] > tasksList.length) {
+      console.log("This number does not exist")
+    } else {
+      console.log("Task marked as done")
+      tasksList.splice(`${a[0] - 1}`, 1, `[✓]${tasksList[a - 1].slice(3)}`)
+    }
+  }
+}
+
 /**
  * Exits the application
  *
