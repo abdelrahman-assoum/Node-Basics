@@ -46,9 +46,12 @@ function onDataReceived(text) {
   else if (text === 'list\n') {
     list();
     }
-    else if (text.startsWith('add')) {
+  else if (text.startsWith('add')) {
       add(text);
-    }
+  }
+  else if (text.startsWith('remove')) {
+    removeTask(text)
+  }
   else{
     unknownCommand(text);
   }
@@ -109,6 +112,22 @@ function add(arg){
     tasksList.push(b);
     console.log("Your task has added succesfully");
   }
+}
+function removeTask(text) {
+  if (text === "remove\n") {
+    tasksList.pop();
+    return
+  }
+  text = text.replace('\n', '').trim();
+  const removed = text.split(' ');
+  if (removed[0] === 'remove') {
+    const a = removed.slice(1).join(' ');
+  
+    if (a <= tasksList.length) {
+      tasksList.splice(`${a[0] - 1}`, 1);
+    }
+  }
+
 }
 /**
  * Exits the application
