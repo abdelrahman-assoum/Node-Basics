@@ -123,7 +123,9 @@ function removeTask(text) {
   if (removed[0] === 'remove') {
     const a = removed.slice(1).join(' ');
 
-    if (a <= tasksList.length) {
+    if (a > tasksList.length) {
+      console.log("This number does not exist");
+    } else {
       tasksList.splice(`${a[0] - 1}`, 1);
     }
   }
