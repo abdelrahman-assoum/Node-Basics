@@ -43,6 +43,9 @@ function onDataReceived(text) {
   else if (text === 'help\n') {
     help();
   }
+  else if (text === 'list\n') {
+    list()
+    }
   else{
     unknownCommand(text);
   }
@@ -86,9 +89,12 @@ function hello(text){
     console.log(`hello ${word}!`);
     }
 }
+let tasksList = ["task 1", "task 2"]
+
 function list(){
- let listt = [task1,task2,task3];
- console.log(listt);
+  tasksList.forEach((element, index) => {
+    console.log(`${index + 1} - [ ] ${element}`)
+  })
 }
 
 
