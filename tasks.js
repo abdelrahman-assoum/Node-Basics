@@ -49,6 +49,9 @@ function onDataReceived(text) {
   else if (text.startsWith('add')) {
     add(text);
   }
+  else if (text.startsWith('edit')) {
+    edit(text);
+  }
   else if (text.startsWith('remove')) {
     removeTask(text)
   }
@@ -129,6 +132,25 @@ function removeTask(text) {
       tasksList.splice(`${a[0] - 1}`, 1);
     }
   }
+
+}
+
+function edit (text) {
+if (text === "edit\n") {
+  console.log("Error: You didn't specify what you need to edit");
+}
+text = text.replace('\n', '').trim();
+const edited = text.split(' ');
+if (edited[0] === 'edit') {
+  const a = edited.slice(1).join(' ');
+  if (a[0] > tasksList.length) {
+    console.log("You enter a number does not exist")
+  } else if (typeof Number(a[0]) === "number" && a[1] === " ") {
+    tasksList.splice(`${a[0] - 1}`, 1, a.slice(2));
+  } else if (typeof a[0] === "string") {
+    tasksList.splice(-1, 1, a)
+  }
+}
 
 }
 /**
