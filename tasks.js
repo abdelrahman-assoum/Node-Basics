@@ -44,7 +44,10 @@ function onDataReceived(text) {
     help();
   }
   else if (text === 'list\n') {
-    list()
+    list();
+    }
+    else if (text.startsWith('add')) {
+      add(text);
     }
   else{
     unknownCommand(text);
@@ -96,16 +99,25 @@ function list(){
     console.log(`${index + 1} - [ ] ${element}`)
   })
 }
-
-
+function add(arg){
+  arg=arg.trim().split(" ");
+  const b = arg.slice(1).join(" ")
+  if (b===undefined) {
+    console.log("please enter a valid task")
+  }
+  else {
+    tasksList.push(b);
+    console.log("Your task has added succesfully");
+  }
+}
 /**
  * Exits the application
  *
  * @returns {void}
- */
+ */ 
+
 function quit(){
   console.log('Quitting now, goodbye!')
-  
   process.exit();
 }
 
