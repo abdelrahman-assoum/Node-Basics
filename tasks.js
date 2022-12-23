@@ -83,7 +83,7 @@ function unknownCommand(c) {
  * @returns {void}
  */
 function help() {
-  let helplist = "quit or exit for quit the application \nhello for saying hello!\nhello word for saying hello word!(you can use any word you want with hello)  \nhelp for listing all commands \nadd for add new task \nremove to remove the last task \nremove number to remove specific number";
+  let helplist = "quit or exit for quit the application \nhello for saying hello!\nhello word for saying hello word!(you can use any word you want with hello)  \nhelp for listing all commands \nadd for add new task \nremove to remove the last task \nremove number to remove specific number \ncheck to check your task \nuncheck to uncheck your task";
   console.log(helplist)
 }
 
