@@ -55,9 +55,12 @@ function onDataReceived(text) {
   else if (text.startsWith('remove')) {
     removeTask(text)
   }
-  else if (text.split(" ")[0] === "done" || text === "done\n") {
-  doneList(text);
+  else if (text.split(" ")[0] === "check" || text === "check\n") {
+  checkList(text);
   }
+  else if (text.split(" ")[0] === "uncheck" || text === "uncheck\n") {
+    uncheckList(text);
+    }
   else {
     unknownCommand(text);
   }
@@ -155,24 +158,40 @@ if (edited[0] === 'edit') {
   }
 }
 }
-function doneList(text) {
-  if (text === "done\n") {
+function checkList(text) {
+  if (text === "check\n") {
     console.log("Select the task number you want to check it!")
     return
   }
   text = text.replace('\n', '').trim()
   const words = text.split(" ")
-  if (words[0] === "done") {
+  if (words[0] === "check") {
     const a = words.slice(1).join(' ')
     if (a[0] > tasksList.length) {
       console.log("This number does not exist")
     } else {
-      console.log("Task marked as done")
+      console.log("Your task is checked")
       tasksList.splice(`${a[0] - 1}`, 1, `[✓]${tasksList[a - 1].slice(3)}`)
     }
   }
 }
-
+function uncheckList(text) {
+  if (text === "uncheck\n") {
+    console.log("Select the task number you want to uncheck it!")
+    return
+  }
+  text = text.replace('\n', '').trim()
+  const words = text.split(" ")
+  if (words[0] === "uncheck") {
+    const a = words.slice(1).join(' ')
+    if (a[0] > tasksList.length) {
+      console.log("This number does not exist")
+    } else {
+      console.log("Your task is unchecked")
+      tasksList.splice(`${a[0] - 1}`, 1, `[ ]${tasksList[a - 1].slice(3)}`)
+    }
+  }
+}
 /**
  * Exits the application
  *
