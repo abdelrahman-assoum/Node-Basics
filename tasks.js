@@ -9,7 +9,7 @@
  * @param  {string} name the name of the app
  * @returns {void}
  */
-function startApp(name){
+function startApp(name) {
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
   process.stdin.on('data', onDataReceived);
@@ -34,10 +34,10 @@ function startApp(name){
  * @returns {void}
  */
 function onDataReceived(text) {
-  if (text === 'quit\n'|| text === 'exit\n') {
+  if (text === 'quit\n' || text === 'exit\n') {
     quit();
   }
-  else if(text === 'hello\n' || text.split(" ")[0] === "hello"){
+  else if (text === 'hello\n' || text.split(" ")[0] === "hello") {
     hello(text);
   }
   else if (text === 'help\n') {
@@ -45,14 +45,14 @@ function onDataReceived(text) {
   }
   else if (text === 'list\n') {
     list();
-    }
+  }
   else if (text.startsWith('add')) {
-      add(text);
+    add(text);
   }
   else if (text.startsWith('remove')) {
     removeTask(text)
   }
-  else{
+  else {
     unknownCommand(text);
   }
 }
@@ -65,16 +65,16 @@ function onDataReceived(text) {
  * @param  {string} c the text received
  * @returns {void}
  */
-function unknownCommand(c){
-  console.log('unknown command: "'+c.trim()+'"')
+function unknownCommand(c) {
+  console.log('unknown command: "' + c.trim() + '"')
 }
 /**
  * List all the possible commands
  *
  * @returns {void}
  */
-function help(){
-  let helplist ="quit or exit for quit the application \nhello for saying hello!\nhello word for saying hello word!(you can use any word you want with hello)  \nhelp for listing all commands";
+function help() {
+  let helplist = "quit or exit for quit the application \nhello for saying hello!\nhello word for saying hello word!(you can use any word you want with hello)  \nhelp for listing all commands \nadd for add new task \nremove to remove the last task \nremove number to remove specific number";
   console.log(helplist)
 }
 
@@ -83,29 +83,29 @@ function help(){
  *
  * @returns {void}
  */
-function hello(text){
-  if (text === "hello\n"){
+function hello(text) {
+  if (text === "hello\n") {
     console.log("hello!");
     return
   }
   text = text.replace('\n', '').trim();
   const typed = text.split(' ');
-  if (typed[0] === "hello"){
+  if (typed[0] === "hello") {
     const word = typed.slice(1).join(" ");
     console.log(`hello ${word}!`);
-    }
+  }
 }
 let tasksList = ["task 1", "task 2"]
 
-function list(){
+function list() {
   tasksList.forEach((element, index) => {
     console.log(`${index + 1} - [ ] ${element}`)
   })
 }
-function add(arg){
-  arg=arg.trim().split(" ");
+function add(arg) {
+  arg = arg.trim().split(" ");
   const b = arg.slice(1).join(" ")
-  if (b===undefined) {
+  if (b === undefined) {
     console.log("please enter a valid task")
   }
   else {
@@ -122,7 +122,7 @@ function removeTask(text) {
   const removed = text.split(' ');
   if (removed[0] === 'remove') {
     const a = removed.slice(1).join(' ');
-  
+
     if (a <= tasksList.length) {
       tasksList.splice(`${a[0] - 1}`, 1);
     }
@@ -133,9 +133,9 @@ function removeTask(text) {
  * Exits the application
  *
  * @returns {void}
- */ 
+ */
 
-function quit(){
+function quit() {
   console.log('Quitting now, goodbye!')
   process.exit();
 }
